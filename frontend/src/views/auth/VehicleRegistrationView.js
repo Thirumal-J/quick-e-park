@@ -85,9 +85,9 @@ const VehicleRegistrationView = () => {
               values.mobileNumber = localData.mobileNumber;
               values.password = localData.password;
               values.confirmPassword = localData.confirmPassword;
-              // axios('http://localhost:5000/addNewRegistration', {
+              axios('http://localhost/addNewRegistration', {
                 
-                axios('https://95d67cb9b11f.ngrok.io/addNewRegistration', {
+                // axios('https://95d67cb9b11f.ngrok.io/addNewRegistration', {
                 method: 'POST',
                 data: values,
                 headers: {
