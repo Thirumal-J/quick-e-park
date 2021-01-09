@@ -1,0 +1,159 @@
+{
+    "success":{
+        "status_type":0,        
+        "status_message":"Success.",
+        "status":{
+            "generic":{
+                "status_code":"200",
+                "status_desc":"GENERIC SUCCESS."
+            },
+            "registration_success": {
+              "status_code": "200",
+              "status_desc": "Registration Successful."
+            },
+            "check_owner_success": {
+              "status_code": "200",
+              "status_desc": "Owner exists for this vehicle."
+            },
+            "email_succ":{
+                "status_code":"200",
+                "status_desc":"Email successfully sent."
+            },
+            "login":{
+                "status_code":"200",
+                "status_desc":"Login Successful."
+            },
+            "dbcon_suc":{
+                "status_code":"200",
+                "status_desc":"Database Connection Successful."
+            },
+            "res_pass_succ":{
+                "status_code":"200",
+                "status_desc":"Password successfully inserted"
+            },
+            "park_succ":{
+                "status_code":"200",
+                "status_desc":"Parking Successful"
+            },
+            "table_exist": {
+                "status_code": "200",
+                "status_desc": "Table Exist in Database ."
+              },
+              "create_table_success": {
+                "status_code": "200",
+                "status_desc": "Table Created in Database ."
+              },
+              "drop_table_success": {
+                "status_code": "200",
+                "status_desc": "Table Dropped in Database ."
+              },
+              "fetch_data_success": {
+                "status_code": "200",
+                "status_desc": "Data fetched successfully from PostgreSQL table."
+              },
+              "db_close_success": {
+                "status_code": "200",
+                "status_desc": "PostgreSQL Database connection is closed."
+              },
+              "update_table_success": {
+                "status_code": "200",
+                "status_desc": "Updated data successfully in Database."
+              },
+              "insert_carregno_succ": {
+                "status_code": "200",
+                "status_desc": "New Car Registration number added successfully."
+              }
+        }
+    },
+    "error":{
+        "status_type":1,
+        "status_message":"Error",
+        "status":{
+            "Generic":{
+                "status_code":"101",
+                "status_desc":"GENERIC ERROR."
+            },
+            "email_fail":{
+                "status_code":"201",
+                "status_desc":"Email Not sent. Error in SMTP"
+            },
+            "login_fail":{
+                "status_code":"211",
+                "status_desc":"Input credentials incorrect."
+            },
+            "dbcon_fail":{
+                "status_code":"221",
+                "status_desc":"Database Connection Failed."
+            },
+            "json_in_fail":{
+                "status_code":"231",
+                "status_desc":"json header input entered in wrong format. Check JSON."
+            },
+            "notable":{
+                "status_code":"241",
+                "status_desc":"Table doesn't exist in database."
+            },
+            "res_pass_fail":{
+                "status_code":"242",
+                "status_desc":"Password insertion failed. User doesn't exist."
+            },
+            "parkexists":{
+                "status_code":"243",
+                "status_desc":"vehicle parking already exists"
+            },
+            "park_fail":{
+                "status_code":"244",
+                "status_desc":"Parking details insertion failed."
+            },
+            "emptydata":{
+                "status_code":"245",
+                "status_desc":"0 rows fetched."
+            },
+            "update_fail":{
+                "status_code":"246",
+                "status_desc":"update to database failed."
+            },
+            "drop_table_failure": {
+                "status_code": "251",
+                "status_desc": "Dropping table failed."
+              },
+              "create_table_failure": {
+                "status_code": "251",
+                "status_desc": "Creating table failed."
+              },
+              "DB_Error": {
+                "status_code": "261",
+                "status_desc": "PostgreSQL Error."
+              },
+              "fetch_data_failure": {
+                "status_code": "261",
+                "status_desc": "Error while fetching data from PostgreSQL table."
+              },
+              "db_close_failure": {
+                "status_code": "271",
+                "status_desc": "Error while closing PostgreSQL Database."
+              },
+              "update_table_failure": {
+                "status_code": "271",
+                "status_desc": "Error while Updating data in Database."
+              },
+              "insert_carregno_fail": {
+                "status_code": "201",
+                "status_desc": "car registration number not added."
+              },
+              "check_owner_failure": {
+                "status_code": "201",
+                "status_desc": "Owner does not exists for this vehicle registration"
+              },
+              "registration_fail": {
+                "status_code": "201",
+                "status_desc": "Registration Unsuccessful, license number or email already exists."
+              }
+        }
+    },
+    "default":{
+        "status_type":"-1",
+        "status_message":"nothing to display"
+    }
+
+}
