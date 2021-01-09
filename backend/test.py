@@ -75,7 +75,6 @@ db = SQLAlchemy(app)
 # conn.close()
 
 @app.route("/")
-@token_required
 def index():
     return "Hello!! This is login authentication api"
 
@@ -1136,4 +1135,4 @@ class updatePassword(Resource):
 api.add_resource(updatePassword,"/updatePassword")
 
 if __name__=="__main__":
-    app.run(port=5000,debug=True)
+    app.run(host="0.0.0.0",port=5000)
