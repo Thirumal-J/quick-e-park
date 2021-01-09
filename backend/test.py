@@ -75,7 +75,6 @@ db = SQLAlchemy(app)
 # conn.close()
 
 @app.route("/")
-@token_required
 def index():
     return "Hello!! This is login authentication api"
 
