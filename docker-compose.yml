@@ -5,6 +5,8 @@ services:
   api-gateway:
     image: nginx:1.17.10
     container_name: reverse_proxy
+    depends_on:
+      - back-end
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
@@ -21,18 +23,29 @@ services:
   databaseall:
     # Pull the latest 'postgres' image
     image: "postgres"
-    container_name: ""
+    container_name: "quickeparkdb"
     # Postgres environment parameters and creating volumes to keep data saved in local
     volumes:
-      - humidity-database:/var/lib/postgresql/data
-      - ./db/init-humidity-database.sh:/docker-entrypoint-initdb.d/init-humidity-database.sh
+      - quickepark-database:/var/lib/postgresql/data
+      #- ./database/init-quickepark-database.sh:/docker-entrypoint-initdb.d/init-quickepark-database.sh
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     # Create environment
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD="1234"
+      - POSTGRES_PASSWORD="Password"
     # Bind mount the default Postgres port
     ports:
       - 5004:5432
+    
+  back-end:
+    build:
+      context: ./backend
+      dockerfile: service.Dockerfile
+    ports:
+      - 5000:5000
+    restart: on-failure
 
 #MOUNTING VOLUMES
-#volumes:
+volumes:
+  quickepark-database:
+    
