@@ -198,3 +198,39 @@ def closeConnection():
         status="error"
         status_who=statuswho.DB_CLOSE_CONNECTION_FAILURE
         return retcommon_status.createJSONResponse(status,status_who,str(result))
+
+
+def updatePassword(tableName,email,password,updatepassword):
+    result=-1
+    status="default"
+    status_who=""
+    try:
+        if(isTableExist(tableName)== False):
+            status="error"
+            status_who=statuswho.TABLE_DOESNOT_EXIST
+            return retcommon_status.createJSONResponse(status,status_who,str(result))
+
+        select_query = "SELECT * FROM "+tableName+" WHERE email='"+email+"' AND password='"+password+"';"
+        print("*********",select_query)
+        staticVar.cursor.execute(select_query)
+        staticVar.cursor.fetchall()
+        count = staticVar.cursor.rowcount
+        if not(count == 0):
+            results = {}
+            status="success"
+            staticVar.cursor.execute(" UPDATE "+tableName+" SET password ='"+updatepassword+"' WHERE email ='"+email+"'AND password='"+password+"';")
+            staticVar.connection.commit()
+            result = {"Msg": "Password updated successfully."}
+            status_who=statuswho.UPDATE_TABLE_SUCCESS
+            return retcommon_status.createJSONResponse(status,status_who,result)
+        else:
+            status="error"
+            status_who=statuswho.UPDATE_PASSWORD_FAILURE
+            return retcommon_status.createJSONResponse(status,status_who,str(result))
+    except (Exception, psycopg2.DatabaseError) as error :
+            status="error"
+            status_who=statuswho.DATABASE_ERROR
+            return retcommon_status.createJSONResponse(status,status_who,str(result))
+    
+    finally:
+        closeConnection()

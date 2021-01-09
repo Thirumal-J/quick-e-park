@@ -148,6 +148,10 @@
               "registration_fail": {
                 "status_code": "201",
                 "status_desc": "Registration Unsuccessful, license number or email already exists."
+              },
+              "update_password_failure": {
+                "status_code": "201",
+                "status_desc": "Updating password failed."
               }
         }
     },

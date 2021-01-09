@@ -103,6 +103,15 @@ def signup_user():
    #     msg = 'Please fill out the form !'
   #  return render_template('register.html', msg = msg) 
 
+
+class updatePassword(Resource):
+    def post(self):
+        inputJson = request.get_json()
+        print (inputJson)
+        return registrationModel.updatePassword(appConf.registrationtableName,inputJson["email"],inputJson["password"],inputJson["updatePassword"])
+
+api.add_resource(updatePassword,"/updatePassword")
+
 api.add_resource(DBConnection,"/getDbConnection")
 api.add_resource(DropRegistrationTable,"/dropRegistrationTable")
 api.add_resource(FetchAllUserData,"/usersData")

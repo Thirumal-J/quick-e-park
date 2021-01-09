@@ -1127,5 +1127,13 @@ class checkOwner(Resource):
 api.add_resource(checkOwner,"/checkOwner")
 
 
+class updatePassword(Resource):
+    def post(self):
+        inputJson = request.get_json()
+        print (inputJson)
+        return registrationModel.updatePassword(appConf.registrationtableName,inputJson["email"],inputJson["password"],inputJson["updatePassword"])
+
+api.add_resource(updatePassword,"/updatePassword")
+
 if __name__=="__main__":
     app.run(port=5000,debug=True)
