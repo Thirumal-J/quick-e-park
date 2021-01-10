@@ -13,10 +13,9 @@ COPY . /backend
 WORKDIR /backend
 RUN pip install -r requirements.txt
 EXPOSE 5000
-ENTRYPOINT [ "python" ]
-CMD [ "test.py" ]
-
-#COPY start-service.sh /backend/start-service.sh
-#EXPOSE 4001-4004
-#RUN ["chmod", "+x", "/backend/start-service.sh"]
-#ENTRYPOINT ["/backend/start-service.sh"]
+#ENTRYPOINT [ "python" ]
+#CMD [ "test.py" ]
+COPY start-service.sh /backend/start-service.sh
+EXPOSE 4001-4004
+RUN ["chmod", "+x", "/backend/start-service.sh"]
+ENTRYPOINT ["/backend/start-service.sh"]
