@@ -7,7 +7,7 @@ import json
 from werkzeug.security import generate_password_hash, check_password_hash
 import os, sys
 sys.path.append(os.getcwd())
-import registration_model as registrationModel
+#import registration_model as registrationModel
 import app_configuration as appConf
 
 app = Flask(__name__)

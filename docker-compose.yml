@@ -35,7 +35,7 @@ services:
       - POSTGRES_PASSWORD="Password"
     # Bind mount the default Postgres port
     ports:
-      - 5004:5432
+      - 5432:5432
     
   back-end:
     build:
@@ -43,6 +43,12 @@ services:
       dockerfile: service.Dockerfile
     ports:
       - 5000:5000
+    # environment: 
+    #   - DB_CONNECTION=quickeparkdb
+    #   - DB_HOST=databaseall
+    #   - DB_PORT=5432
+    #   - DB_DATABASE=postgres
+    #   - DB_USERNAME=postgres
     restart: on-failure
 
 #MOUNTING VOLUMES
