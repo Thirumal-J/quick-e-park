@@ -108,7 +108,7 @@ const AddNewVehicle = () => {
                 values.vehicleType="owner";
               }
               axios(
-                'http://localhost:5000/addVehicle', {
+                'http://localhost/addVehicleData', {
                 // 'https://95d67cb9b11f.ngrok.io/addVehicleData', {
                 method: 'POST',
                 data: values,

@@ -89,7 +89,7 @@ const BuyParkingTicket = () => {
   useEffect(() => {
     async function fetchVehicles() {
       const result = await axios(
-        'http://localhost:5000/getVehicleList', {
+        'http://localhost/showVehicleData', {
         // 'https://95d67cb9b11f.ngrok.io/showVehicleData', {
         method: 'POST',
         data: { "email": localData.email },

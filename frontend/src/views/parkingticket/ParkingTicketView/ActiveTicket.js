@@ -79,7 +79,7 @@ function ActiveTicket() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
-        'http://localhost:5000/getActiveTicket', {
+        'http://localhost/viewTicketUser', {
         // ' https://95d67cb9b11f.ngrok.io/viewTicketUser', {
         method: 'POST',
         data: { "email": localData.email },
@@ -202,7 +202,7 @@ function ActiveTicket() {
               })}
               onSubmit={values => {
                 axios(
-                  'http://localhost:5000/extendActiveParking', {
+                  'http://localhost:5000/extendTicket', {
                     // ' https://95d67cb9b11f.ngrok.io/extendTicket', {
                   method: 'POST',
                   data: { "email": localData.email, "parkingEmail":activeTicketData[index].parkingEmail, "parkedCarRegNo":activeTicketData[index].parkedCarRegNo,"timeToExtend": values.timeToExtend },

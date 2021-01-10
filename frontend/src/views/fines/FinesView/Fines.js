@@ -59,8 +59,8 @@ const Fines = () => {
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
-        // 'http://localhost:5000/viewFines', {
-          ' https://95d67cb9b11f.ngrok.io/viewFinesUser', {
+        'http://localhost/viewFinesUser', {
+          // ' https://95d67cb9b11f.ngrok.io/viewFinesUser', {
         method: 'POST',
         data: { "email": localData.email },
         headers: {

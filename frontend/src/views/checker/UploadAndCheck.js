@@ -101,8 +101,8 @@ const UploadAndCheck = (props) => {
     const [imagePreviewUrl, setImagePreviewUrl] = useState('');
     function getLicenseNumber() {
         setShowUploadModule(false);
-        axios('https://d034bcf3f0f3.ngrok.io/getLicenseNumber', {
-        // axios('http://localhost:5000/getLicenseNumber', {
+        // axios('https://d034bcf3f0f3.ngrok.io/getLicenseNumber', {
+        axios('http://localhost/getLicenseNumber', {
             method: 'POST',
             data: { "image": base64Img },
             headers: {
@@ -135,8 +135,8 @@ const UploadAndCheck = (props) => {
         // setShowTicketFound(true);
         // setActiveTicketData({ parkedCarRegNo: "BIT CH 354" });
         // setShowTicketNotFound(true);
-        axios('https://95d67cb9b11f.ngrok.io/viewTicketChecker', {
-            // axios('http://localhost:5000/getTicketStatus', {
+        // axios('https://95d67cb9b11f.ngrok.io/viewTicketChecker', {
+            axios('http://localhost/viewTicketChecker', {
             method: 'POST',
             data: { "parkedCarRegNo": licenseNumber },
             headers: {
@@ -164,7 +164,8 @@ const UploadAndCheck = (props) => {
         // setOwnerEmail("thi@gmail.com");
         // setShowOwnerDetails(true);
         // setShowOwnerNotFound(true);
-        axios('https://95d67cb9b11f.ngrok.io/checkOwner', {
+        // axios('https://95d67cb9b11f.ngrok.io/checkOwner', {
+            axios('http://localhost/checkOwner', {
             method: 'POST',
             data: { "carRegNumber": licenseNumber },
             headers: {
@@ -198,7 +199,8 @@ const UploadAndCheck = (props) => {
 
     function issueFine() {
         console.log("FINEAMOUNT-->", fineAmount);
-        axios('https://95d67cb9b11f.ngrok.io/issueFine', {
+        // axios('https://95d67cb9b11f.ngrok.io/issueFine', {
+            axios('http://localhost/issueFine', {
             method: 'POST',
             data: { "userEmail": ownerEmail, "parkingFine": fineAmount, "parkedCarRegNo": licenseNumber, "empId": localData.empId },
             headers: {

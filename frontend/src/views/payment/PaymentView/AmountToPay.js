@@ -89,8 +89,8 @@ const AmountToPay = () => {
     useEffect(() => {
         async function fetchData() {
             const result = await axios(
-                // 'http://localhost:5000/getPendingPayment', {
-                ' https://95d67cb9b11f.ngrok.io/getPendingPayment', {
+                'http://localhost/getPendingPayment', {
+                // ' https://95d67cb9b11f.ngrok.io/getPendingPayment', {
                 method: 'POST',
                 data: { "email": localData.email },
                 headers: {
@@ -217,8 +217,8 @@ const AmountToPay = () => {
                                         console.log("in submit payment-->", values)
 
                                         axios(
-                                            // 'http://localhost:5000/extendActiveParking', {
-                                              ' https://95d67cb9b11f.ngrok.io/clearPayment', {
+                                            'http://localhost/clearPayment', {
+                                            //   ' https://95d67cb9b11f.ngrok.io/clearPayment', {
                                             method: 'POST',
                                             // data: { "email": localData.email, "timeToExtend": values.timeToExtend },
                                             data: values,

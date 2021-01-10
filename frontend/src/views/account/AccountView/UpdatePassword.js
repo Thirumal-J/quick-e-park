@@ -77,7 +77,8 @@ const UpdatePassword = () => {
               })
             }
             onSubmit={values => {
-              axios('http://localhost:5000/updateNewPassword', {
+              // axios('http://localhost:5000/updateNewPassword', {
+                axios('http://localhost/updatePassword', {
                 method: 'POST',
                 data: values,
                 headers: {

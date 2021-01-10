@@ -65,8 +65,8 @@ const VehicleList = () => {
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
-        // 'http://localhost:5000/getVehicleList', {
-        'https://95d67cb9b11f.ngrok.io/showVehicleData', {
+        'http://localhost/showVehicleData', {
+        // 'https://95d67cb9b11f.ngrok.io/showVehicleData', {
         method: 'POST',
         data: { "email": localData.email },
         // data: { "email": "thirumal1206@gmail.com"},

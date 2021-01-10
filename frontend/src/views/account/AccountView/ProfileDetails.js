@@ -70,8 +70,8 @@ const ProfileDetails = ({ className, ...rest }) => {
             })}
             onSubmit={values => {
               console.log(values);
-              // axios('http://localhost:5000/updateProfile', {
-                axios('https://95d67cb9b11f.ngrok.io/updateProfileData',{
+              axios('http://localhost/updateProfileData', {
+                // axios('https://95d67cb9b11f.ngrok.io/updateProfileData',{
                 method: 'POST',
                 data: values,
                 headers: {

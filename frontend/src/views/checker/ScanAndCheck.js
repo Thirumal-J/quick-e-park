@@ -86,7 +86,7 @@ const ScanAndCheck = (props) => {
   const [file, setFile] = useState('');
   function getLicenseNumber(base64Img) {
     // axios('https://09b6f28e955a.ngrok.io/getLicenseNumber', {
-    axios('http://localhost:5000/getLicenseNumber', {
+    axios('http://localhost/getLicenseNumber', {
       method: 'POST',
       data: { "image": base64Img },
       headers: {

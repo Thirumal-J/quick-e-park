@@ -89,8 +89,8 @@ function TicketHistory() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
-        // 'http://localhost:5000/getActiveTicket', {
-        ' https://95d67cb9b11f.ngrok.io/getTicketHistory', {
+        'http://localhost/getTicketHistory', {
+        // ' https://95d67cb9b11f.ngrok.io/getTicketHistory', {
         method: 'POST',
         data: { "email": localData.email },
         headers: {

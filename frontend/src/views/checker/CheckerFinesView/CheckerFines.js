@@ -62,8 +62,8 @@ const CheckerFines = () => {
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
-        // 'http://localhost:5000/viewFinesChecker', {
-        'https://95d67cb9b11f.ngrok.io/viewIssuedFine', {
+        'http://localhost/viewIssuedFine', {
+        // 'https://95d67cb9b11f.ngrok.io/viewIssuedFine', {
         method: 'POST',
         data: { "empId": localData.empId },
         headers: {
