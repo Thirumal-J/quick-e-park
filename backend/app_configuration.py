@@ -7,10 +7,10 @@
 # }
 
 registrationDBConfig = {
-    "host": "192.168.0.4",
-    "user": "qpadmin",
+    "host": "databaseall",
+    "user": "postgres",
     "password": "Password",
-    "database": "arpb",
+    "database": "postgres",
     "port":"5432",
 }
 registrationtableName = "tbl_user"

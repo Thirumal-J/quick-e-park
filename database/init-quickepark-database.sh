@@ -2,8 +2,6 @@
 set -e
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE USER qpadmin;
-    CREATE DATABASE arpb;
-    GRANT ALL PRIVILEGES ON DATABASE arpb TO qpadmin;
-	ALTER ROLE qpadmin WITH PASSWORD 'Password';
+    GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
+	ALTER ROLE postgres WITH PASSWORD 'Password';
 EOSQL

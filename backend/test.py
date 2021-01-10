@@ -63,9 +63,9 @@ def token_required(f):
     return decorated
 
 # DB_HOST="172.25.0.3"
-DB_HOST="192.168.0.4"
-DB_NAME="arpb"
-DB_USER="qpadmin"
+DB_HOST="databaseall"
+DB_NAME="postgres"
+DB_USER="postgres"
 DB_PASS="Password"
 db = SQLAlchemy(app)
 # conn =psycopg2.connect(dbname=DB_NAME,user=DB_USER,password=DB_PASS,host=DB_HOST)
