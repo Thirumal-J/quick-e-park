@@ -27,7 +27,7 @@ services:
     # Postgres environment parameters and creating volumes to keep data saved in local
     volumes:
       - quickepark-database:/var/lib/postgresql/data
-      #- ./database/init-quickepark-database.sh:/docker-entrypoint-initdb.d/init-quickepark-database.sh
+      - ./database/init-quickepark-database.sh:/docker-entrypoint-initdb.d/init-quickepark-database.sh
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     # Create environment
     environment:
