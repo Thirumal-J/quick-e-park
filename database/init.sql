@@ -7,10 +7,7 @@ create  view uv_getparkdetails as select uid,parkingid,parkingstartdate,case whe
 create view uv_totalfare as (select uid,parkingfare from tbl_parkdetails where parkingactive='0'  and paidstatus='0' union all select uid,parkingfare from tbl_history where  paidstatus='0');
 create table tbl_checker (CID int primary key , Name varchar, Surname varchar, Email varchar, Password varchar, ActiveStatus bit, RegDate timestamp default now(), location varchar,mobileno varchar);
 
--- CREATE or replace PROCEDURE sp_updateTransactions()
--- LANGUAGE SQL
--- AS $$
--- update tbl_parkdetails set parkingactive='0' where  floor(extract(epoch from (parkingenddate-now()) / 60))<=0;
--- insert into tbl_history select p.uid,u.name,u.surname,u.email,p.parkingstartdate,p.parkingenddate,p.parkinglocation,p.parkingfare,p.parkedcarregno,p.paidstatus,p.parkingemail,cast(p.notificationSent as varchar)  from tbl_parkdetails p join tbl_user u on p.uid=u.UID where p.parkingactive='0';
--- delete from tbl_parkdetails tbl_parkdetails where parkingactive='0';
--- $$;
+CREATE or replace PROCEDURE sp_updateTransactions() LANGUAGE SQL AS $$ update tbl_parkdetails set parkingactive='0' where  floor(extract(epoch from (parkingenddate-now()) / 60))<=0; 
+insert into tbl_history select p.uid,u.name,u.surname,u.email,p.parkingstartdate,p.parkingenddate,p.parkinglocation,p.parkingfare,p.parkedcarregno,p.parkingemail,p.notificationSent,p.paidstatus  from tbl_parkdetails p join tbl_user u on p.uid=u.UID where p.parkingactive='0';
+delete from tbl_parkdetails tbl_parkdetails where parkingactive='0'; 
+$$;
