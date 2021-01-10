@@ -167,7 +167,7 @@ const BuyParkingTicket = () => {
               if (values.parkingEmail == '') {
                 values.parkingEmail = localData.email;
               }
-              axios('http://localhost:5000/buyParkingTicket', {
+              axios('http://localhost/buyParkingTicket', {
               // axios(' https://95d67cb9b11f.ngrok.io/buyticket', {
                 method: 'POST',
                 data: values,

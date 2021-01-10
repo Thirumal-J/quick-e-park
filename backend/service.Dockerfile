@@ -17,4 +17,4 @@ EXPOSE 5000
 #CMD [ "test.py" ]
 COPY start-service.sh /backend/start-service.sh
 RUN ["chmod", "+x", "/backend/start-service.sh"]
-ENTRYPOINT ["/backend/start-service.sh"]
+ENTRYPOINT ["sh","/backend/start-service.sh"]
