@@ -101,8 +101,8 @@ const UploadAndCheck = (props) => {
     const [imagePreviewUrl, setImagePreviewUrl] = useState('');
     function getLicenseNumber() {
         setShowUploadModule(false);
-        // axios('https://d034bcf3f0f3.ngrok.io/getLicenseNumber', {
-        axios('http://localhost/getLicenseNumber', {
+        //axios('https://7a6a05af80e1.ngrok.io/getLicenseNumber', {
+         axios('http://localhost/getLicenseNumber', {
             method: 'POST',
             data: { "image": base64Img },
             headers: {

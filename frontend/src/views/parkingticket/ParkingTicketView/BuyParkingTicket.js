@@ -316,6 +316,7 @@ const BuyParkingTicket = () => {
                       }}
                     >
                       <option aria-label="None" value="" />
+                      <option value={10}>10 mins</option>
                       <option value={30}>30 mins</option>
                       <option value={60}>1 hour</option>
                       {buildOptions()}

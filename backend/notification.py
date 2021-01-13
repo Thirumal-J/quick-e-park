@@ -17,7 +17,7 @@ app=Flask(__name__)
 # DB_USER="postgres"
 # DB_PASS="Pass@123"
 
-DB_HOST="localhost"
+DB_HOST="databaseall"
 DB_NAME="postgres"
 DB_USER="postgres"
 DB_PASS="Password"
