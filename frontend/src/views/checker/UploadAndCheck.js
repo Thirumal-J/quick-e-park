@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import {
     Box,
     Button,
-    Container,
-    Grid,
-    Link,
-    TextField,
-    Typography,
-    makeStyles
+    Container, makeStyles, TextField,
+    Typography
 } from '@material-ui/core';
-import Page from 'src/components/Page';
-import { Alert, AlertTitle } from '@material-ui/lab';
-// import TakePicture from 'src/components/TakePicture';
-import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { useState } from 'react';
+import 'react-html5-camera-photo/build/css/index.css';
+import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
         height: '200px',
         width: '500px',
         img: {
-            // width: '25%',
-            // height: '25%'
             width: '100px',
             height: '300px'
         }
@@ -64,15 +54,11 @@ const setLocalData = (localDataKey, localDataValue) => {
     localData = JSON.parse(localStorage.getItem(localDataKey));
 };
 
-// function TakePicture (props) {
 const UploadAndCheck = (props) => {
     const classes = useStyles();
-    const navigate = useNavigate();
-    const [showDetail, setShowDetail] = useState(false);
     const [base64Img, setBase64Img] = useState('');
     const [showUploadButton, setShowUploadButton] = useState(false);
     const [showUploadModule, setShowUploadModule] = useState(false);
-    // const [captureImagePreviewUrl, setCaptureImagePreviewUrl] = useState('');
     const [showPreview, setShowPreview] = useState(false);
     const [licenseNumber, setLicenseNumber] = useState('');
     const [showIssueFine, setShowIssueFine] = useState(false);
@@ -88,7 +74,6 @@ const UploadAndCheck = (props) => {
     const [showIssueFineError, setShowIssueFineError] = useState(false);
 
     localData = getLocalData("loginData")
-    // const verfiyLogin = verifyLogin();
     const [activeTicketData, setActiveTicketData] = useState({
         parkedCarRegNo: '',
         parkingFare: '',
@@ -96,12 +81,12 @@ const UploadAndCheck = (props) => {
         parkingStartDate: '',
         remainingParkingDuration: ''
     });
-    const [selectedImage, setSelectedImage] = useState(null);
+
     const [file, setFile] = useState('');
     const [imagePreviewUrl, setImagePreviewUrl] = useState('');
+    
     function getLicenseNumber() {
         setShowUploadModule(false);
-        //axios('https://7a6a05af80e1.ngrok.io/getLicenseNumber', {
          axios('http://localhost/getLicenseNumber', {
             method: 'POST',
             data: { "image": base64Img },
@@ -132,10 +117,6 @@ const UploadAndCheck = (props) => {
 
     function getTicketStatus() {
         console.log("Inside get ticket status");
-        // setShowTicketFound(true);
-        // setActiveTicketData({ parkedCarRegNo: "BIT CH 354" });
-        // setShowTicketNotFound(true);
-        // axios('https://95d67cb9b11f.ngrok.io/viewTicketChecker', {
             axios('http://localhost/viewTicketChecker', {
             method: 'POST',
             data: { "parkedCarRegNo": licenseNumber },
@@ -160,11 +141,6 @@ const UploadAndCheck = (props) => {
     }
 
     function checkOwner() {
-
-        // setOwnerEmail("thi@gmail.com");
-        // setShowOwnerDetails(true);
-        // setShowOwnerNotFound(true);
-        // axios('https://95d67cb9b11f.ngrok.io/checkOwner', {
             axios('http://localhost/checkOwner', {
             method: 'POST',
             data: { "carRegNumber": licenseNumber },
@@ -199,7 +175,6 @@ const UploadAndCheck = (props) => {
 
     function issueFine() {
         console.log("FINEAMOUNT-->", fineAmount);
-        // axios('https://95d67cb9b11f.ngrok.io/issueFine', {
             axios('http://localhost/issueFine', {
             method: 'POST',
             data: { "userEmail": ownerEmail, "parkingFine": fineAmount, "parkedCarRegNo": licenseNumber, "empId": localData.empId },
@@ -212,48 +187,29 @@ const UploadAndCheck = (props) => {
                 if (response.data.statusCode == 200) {
                     setShowIssueFineSuccess(true);
                     setShowIssueFineError(false);
-                    // setShowIssueFine(true);
-                    // setShowIssueFineError(false);
                 }
                 else {
                     setShowIssueFineSuccess(false);
                     setShowIssueFineError(true);
-                    // setShowIssueFine(false);
-                    // setShowIssueFineError(true);
                 }
             })
             .catch(error => {
-                // setShowError(true);
                 setShowIssueFineSuccess(false);
                 setShowIssueFineError(true);
                 console.error('There was an error!', error);
             });
     }
+
     const handlefineAmountChange = (event) => {
         console.log("*********handlefineAmountChange-->", event.target);
         console.log("*********fineAmount-->", fineAmount);
 
     };
-    const fileSelectedHandler = event => {
-        setSelectedImage(event.target.files[0]);
-    };
-    const uploadHandler = () => {
-        const fd = new FormData();
-        fd.append('image', selectedImage);
-        console.log(fd);
-    };
-
+ 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // setImagePreviewUrl('');
         console.log('handle uploading-', file);
-        // let reader = new FileReader();
-        // setBase64Img(reader.readAsDataURL(file));
-        // console.log("***********uploaded image-->",base64Img);
         getLicenseNumber();
-        // setShowUploadModule(false);
-        // setLicenseNumber("BIT CH 534");
-        // setShowIssueFine(true);
     }
 
     const handleImageChange = (e) => {
@@ -284,7 +240,6 @@ const UploadAndCheck = (props) => {
                 display="flex"
                 flexDirection="column"
                 height="100%"
-            // justifyContent="center"
             >
                 <Container maxWidth="md">
                     <Box mb={3}>
@@ -293,7 +248,6 @@ const UploadAndCheck = (props) => {
                             variant="body1"
                             size="large"
                             type="submit"
-                            variant="contained"
                             startIcon={<CloudUploadIcon />}
                         >
                             Upload a picture
@@ -325,8 +279,6 @@ const UploadAndCheck = (props) => {
                                 {showPreview ? <div className={classes.imgPreview}>
                                     <Typography
                                         color="textSecondary"
-                                        // gutterBottom
-                                        // maxWidth="256px"
                                         variant="body2"
                                     >
                                         Preview of the Image
@@ -343,7 +295,6 @@ const UploadAndCheck = (props) => {
                             label="Vehicle License Number"
                             margin="normal"
                             name="licenseNumber"
-                            // onChange={handleChange}
                             value={licenseNumber}
                             variant="outlined"
                         />
@@ -379,7 +330,6 @@ const UploadAndCheck = (props) => {
                                         label="Vehicle License Number"
                                         margin="normal"
                                         name="licenseNumber"
-                                        // onChange={handleChange}
                                         value={licenseNumber}
                                         variant="outlined"
                                     />
@@ -390,7 +340,6 @@ const UploadAndCheck = (props) => {
                                         margin="normal"
                                         name="ownerEmail"
                                         type="email"
-                                        // onChange={handleChange}
                                         value={ownerEmail}
                                         variant="outlined"
                                     />
@@ -400,9 +349,7 @@ const UploadAndCheck = (props) => {
                                         margin="normal"
                                         name="fineAmount"
                                         type="number"
-                                        // onChange={(e) =>handlefineAmountChange(e)}
                                         onChange={event => setFineAmount(event.target.value)}
-                                        // value={fineAmount}
                                         value={fineAmount}
                                         variant="outlined"
                                     />
@@ -490,7 +437,6 @@ const UploadAndCheck = (props) => {
                         {showInfo ? <Box my={2}>
                             <Alert severity="info">
                                 <AlertTitle>Wrong Info</AlertTitle>
-                                {/* <strong>{ticketInfoMessage}</strong> */}
                                 <strong>Photo quality is not good. Try again</strong>
                             </Alert>
                         </Box> : null}

@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
-  Button,
-  Checkbox,
-  Container,
-  FormHelperText,
-  Link,
-  TextField,
-  Typography,
-  makeStyles,
-  Card,
+  Button, Card,
   CardContent,
-  CardHeader,
-  Divider,
-  Grid
+  CardHeader, Container, Divider,
+  Grid, makeStyles, TextField
 } from '@material-ui/core';
-import Page from 'src/components/Page';
 import { Alert, AlertTitle } from '@material-ui/lab';
-// import { values } from 'lodash';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +67,6 @@ const UpdatePassword = () => {
               })
             }
             onSubmit={values => {
-              // axios('http://localhost:5000/updateNewPassword', {
                 axios('http://localhost/updatePassword', {
                 method: 'POST',
                 data: values,
@@ -90,8 +79,7 @@ const UpdatePassword = () => {
                   if (response.data.status_code == 200) {
                     setShowUpdateError(false);
                     setShowUpdateMessage(true);
-                    setMessage(response.data.statusDesc);
-                    // this.props.history.push({'pathname':'/dashboard',state:this.state});			
+                    setMessage(response.data.statusDesc);		
                   }
                   else {
                     setShowUpdateError(true);
@@ -100,7 +88,6 @@ const UpdatePassword = () => {
                   }
                 })
                 .catch(error => {
-                  // this({ errorMessage: error.message });
                   console.error('There was an error!', error);
                 });
             }}
@@ -175,8 +162,6 @@ const UpdatePassword = () => {
                         <Box my={2}>
                           <Button
                             color="primary"
-                            // disabled={isSubmitting}
-                            // fullWidth
                             size="large"
                             type="submit"
                             variant="contained"

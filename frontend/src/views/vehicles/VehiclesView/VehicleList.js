@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  NativeSelect,
-  Typography,
-  makeStyles,
-  Table,
+  Box, Container, makeStyles, Paper, Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  Paper
+  TableRow, Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
-import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,10 +47,8 @@ const VehicleList = () => {
     async function fetchData() {
       const result = await axios(
         'http://localhost/showVehicleData', {
-        // 'https://95d67cb9b11f.ngrok.io/showVehicleData', {
         method: 'POST',
         data: { "email": localData.email },
-        // data: { "email": "thirumal1206@gmail.com"},
         headers: {
           'Content-Type': 'application/json'
         }
@@ -115,7 +94,6 @@ const VehicleList = () => {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  {/* <TableCell algin="right">Parked Date</TableCell> */}
                   <TableCell >Vehicle License Plate Number</TableCell>
                   <TableCell >Vehicle Type</TableCell>
                 </TableRow>
@@ -125,10 +103,6 @@ const VehicleList = () => {
                   <TableRow key={row.carRegNumber}>
                     <TableCell component="th" scope="row">{row.carRegNumber}</TableCell>
                     <TableCell >{row.vehicleType}</TableCell>
-                    {/* <TableCell align="right">{row.ownerShip}</TableCell>
-                    <TableCell align="right">{row.parkingFine}</TableCell>
-                    <TableCell align="right">{row.paymentStatus}</TableCell> */}
-                    {/* <TableCell align="right">{row.protein}</TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>

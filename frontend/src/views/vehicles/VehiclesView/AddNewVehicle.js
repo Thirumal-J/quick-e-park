@@ -1,30 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
-  Button,
-  Container,
-  Grid,
-  Checkbox,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  FormControlLabel,
-  NativeSelect,
-  Typography,
-  Modal,
-  makeStyles
+  Button, Checkbox, Container, FormControlLabel, makeStyles, Modal, TextField, Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
-import Page from 'src/components/Page';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,10 +37,7 @@ const AddNewVehicle = () => {
   localData = getLocalData("loginData");
   const [state, setState] = useState({
     ownerCheckBox: false,
-    // showSuccessMessage: false,
-    // showErrorMessage:false,
     vehicleAlreadyAdded:'',
-    // showVehicleAlreadyAddedMessage:false
   });
 
   const [ showSuccessMessage, setShowSuccessMessage ] = useState(false);
@@ -87,7 +68,6 @@ const AddNewVehicle = () => {
         display="flex"
         flexDirection="column"
         height="100%"
-        // justifyContent="center"
       >
         <Container maxWidth="lg">
           <Formik
@@ -95,10 +75,8 @@ const AddNewVehicle = () => {
               carRegNumber: '',
               vehicleType:'temporary',
               email:localData.email
-              // email:"thirumal1206@gmail.com"
             }}
             validationSchema={Yup.object().shape({
-              // email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               carRegNumber: Yup.string().max(255).required('carRegNumber is required')
 
             })}
@@ -109,10 +87,8 @@ const AddNewVehicle = () => {
               }
               axios(
                 'http://localhost/addVehicleData', {
-                // 'https://95d67cb9b11f.ngrok.io/addVehicleData', {
                 method: 'POST',
                 data: values,
-                // data: { "email": "thirumal1206@gmail.com"},
                 headers: {
                   'Content-Type': 'application/json'
                 }
@@ -120,7 +96,6 @@ const AddNewVehicle = () => {
               ).then(response => {
                 console.log(response.data);
                 if (response.data.statusCode == 200) {
-                  // setState({vehicles: []});
                   setState({vehicles: response.data.data});
                   setShowSuccessMessage(true);
                   setShowErrorMessage(false);
@@ -131,7 +106,6 @@ const AddNewVehicle = () => {
                   setShowErrorMessage(false);
                   setShowVehicleInfo(true);
                   setVehicleInfoMessage(response.data.data.registrationMsg)
-                  // setState({vehicleInfoMessage:response.data.data.registrationMsg});
                 }
                 else {
                   setShowSuccessMessage(false);
@@ -152,7 +126,6 @@ const AddNewVehicle = () => {
               handleBlur,
               handleChange,
               handleSubmit,
-              isSubmitting,
               touched,
               dirty,
               isValid,
@@ -192,7 +165,6 @@ const AddNewVehicle = () => {
                     control={
                       <Checkbox
                         checked={state.ownerCheckBox}
-                        // defaultChecked
                         onChange={handleOwnerCheckBoxChange}
                         name="ownerCheckBox"
                         color="primary"
@@ -204,10 +176,7 @@ const AddNewVehicle = () => {
                   <Box my={2}>
                   <Button
                     color="primary"
-                    // disabled = {!Formik.isValid}
-                    // disabled={isSubmitting || !dirty}
                     disabled={!(isValid && dirty)}
-                    // fullWidth
                     size="large"
                     type="submit"
                     variant="contained"

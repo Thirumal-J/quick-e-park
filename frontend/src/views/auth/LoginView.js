@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Container, Link, makeStyles, TextField,
+  Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
-import Page from 'src/components/Page';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useState } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +40,6 @@ const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [showLoginError, setShowLoginError] = useState(false);
-  // const verfiyLogin = verifyLogin();
   return (
     <Page
       className={classes.root}
@@ -73,8 +65,6 @@ const LoginView = () => {
               {
                 console.log(values);
                 axios('http://localhost/login', {
-                  // axios('http://10.10.162.67:5000/login',{
-                  // axios(' https://95d67cb9b11f.ngrok.io/loginvalid',{
                   method: 'POST',
                   data : values,
                   headers: {
@@ -93,11 +83,8 @@ const LoginView = () => {
                   }
                 })
                       .catch(error => {
-                          // this({ errorMessage: error.message });
                        console.error('There was an error!', error);
-                  });
-              // }
-            
+                  });            
             }
           }
           >
@@ -106,7 +93,6 @@ const LoginView = () => {
               handleBlur,
               handleChange,
               handleSubmit,
-              isSubmitting,
               touched,
               values
             }) => (
@@ -155,8 +141,6 @@ const LoginView = () => {
                 <Box my={2}>
                   <Button
                     color="primary"
-                    // disabled={isSubmitting}
-                    // fullWidth
                     size="large"
                     type="submit"
                     variant="contained"
@@ -166,18 +150,6 @@ const LoginView = () => {
                     Sign in now
                   </Button>
                 </Box>
-                {/* <Typography
-                  color="error"
-                  variant="body1"
-                  name="loginError"
-                  align = "center"
-                  // display ="none"
-                >
-                  Invalid Login Details
-                </Typography> */}
-                {/* <div className = "loginError">
-                  <center><h3>Invalid email or password</h3></center>
-                </div> */}
                 {showLoginError ? <Container maxWidth="sm">
                 <div className = "loginError">
                   <Alert severity="error">
@@ -204,7 +176,6 @@ const LoginView = () => {
                   color="textSecondary"
                   variant="body1"
                 >
-                  {/* Don&apos;t have an account? */}
                   {' '}
                   <Link
                     component={RouterLink}

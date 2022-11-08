@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
   Button,
-  Checkbox,
-  FormHelperText,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Checkbox, Container, FormHelperText, Link, makeStyles, TextField,
+  Typography
 } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useState } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,8 +67,6 @@ const VehicleRegistrationView = () => {
               
             }}
             validationSchema={Yup.object().shape({
-              // email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-              // licenseNumber: Yup.string().max(12).required('Enter a valid license number'),
               licenseNumber: Yup.string().max(255).required('License Number is required'),
               policy: Yup.boolean().oneOf([true], 'This field must be checked')
             })}
@@ -86,9 +78,6 @@ const VehicleRegistrationView = () => {
               values.password = localData.password;
               values.confirmPassword = localData.confirmPassword;
               axios('http://localhost/addNewRegistration', {
-                
-                // axios('https://95d67cb9b11f.ngrok.io/addNewRegistration', {
-                method: 'POST',
                 data: values,
                 headers: {
                   'Content-Type': 'application/json'
@@ -97,11 +86,9 @@ const VehicleRegistrationView = () => {
                 .then(response => {
                   console.log(response.data);
                   if (response.data.statusCode == 200) {
-                    // alert("Successfully Registered, Please Login!");
                     setShowSuccessMsg(true);
                     setShowErrorMsg(false);
                     setShowInfoMsg(false);
-                    // navigate('/', { replace: true });
                   }
                   else if (response.data.statusCode == 201){
                     setShowSuccessMsg(false);
@@ -161,18 +148,6 @@ const VehicleRegistrationView = () => {
                   value={values.licenseNumber}
                   variant="outlined"
                 />
-                {/* <TextField
-                  error={Boolean(touched.vehicleLicensePlateNumber && errors.vehicleLicensePlateNumber)}
-                  fullWidth
-                  helperText={touched.vehicleLicensePlateNumber && errors.vehicleLicensePlateNumber}
-                  label="vehicle License Plate number"
-                  margin="normal"
-                  name="vehicleLicensePlateNumber"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.vehicleLicensePlateNumber}
-                  variant="outlined"
-                /> */}
                 <Box
                   alignItems="center"
                   display="flex"
@@ -240,7 +215,6 @@ const VehicleRegistrationView = () => {
                 {showInfoMsg ? <Box my={2}>
                   <Alert severity="info">
                     <AlertTitle>Wrong Info</AlertTitle>
-                    {/* <strong>{ticketInfoMessage}</strong> */}
                     <strong>Registration Unsuccessful, license number or email already exists</strong>
                   </Alert>
                 </Box> : null}

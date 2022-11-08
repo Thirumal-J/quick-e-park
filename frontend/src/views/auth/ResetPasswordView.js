@@ -1,21 +1,13 @@
-import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
-  Button,
-  Checkbox,
-  Container,
-  FormHelperText,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Button, Container, makeStyles, TextField,
+  Typography
 } from '@material-ui/core';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
-import { values } from 'lodash';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {

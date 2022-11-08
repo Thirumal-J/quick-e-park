@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  NativeSelect,
-  Typography,
-  makeStyles
+  Container, FormControl, InputLabel, makeStyles, Select, Typography
 } from '@material-ui/core';
-import Page from 'src/components/Page';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useEffect, useState } from 'react';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,34 +42,35 @@ const buildOptions = () => {
 };
 
 function ActiveTicket() {
+
   const classes = useStyles();
-  const navigate = useNavigate();
+
   localData = getLocalData("loginData");
+  
   const [state, setState] = useState({
     activeTicketCount:1,
     rows:[]
   });
-  // const [ParkedCarRegNo, setParkedCarRegNo] = useState('');
+  
   const [activeTicketData, setActiveTicketData] = useState({
     parkedCarRegNo: '',
-    // parkingEndDate: '',
     parkingFare: '',
     parkingLocation: '',
     parkingStartDate: '',
     remainingParkingDuration: ''
   });
+
   const [showActiveWindow, setShowActiveWindow] = useState(false);
   const [showNoActiveWindow, setShowNoActiveWindow] = useState(true);
   const [showExtensionOption, setShowExtensionOption] = useState(false);
   const [showExtensionError, setShowExtensionError] = useState(false);
   const [showExtensionSuccess, setShowExtensionSuccess] = useState(false);
   const [callActive, setCallActive] = useState(false);
-  // const [extendParkingTime, setExtendParkingTime] = useState('');
+
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
         'http://localhost/viewTicketUser', {
-        // ' https://95d67cb9b11f.ngrok.io/viewTicketUser', {
         method: 'POST',
         data: { "email": localData.email },
         headers: {
@@ -90,23 +80,17 @@ function ActiveTicket() {
       ).then(response => {
         console.log(response.data);
         if (response.data.statusCode == 200) {
-          // setParkedCarRegNo(response.data.data.ParkedCarRegNo);
           setState({activeTicketCount:response.data.data.length});
           setActiveTicketData(response.data.data);
           setShowActiveWindow(true);
           setShowNoActiveWindow(false);
         }
-        else {
-          // this.loginError.display = "block"
-        }
       })
         .catch(error => {
-          // this({ errorMessage: error.message });
           console.error('There was an error!', error);
         });
     }
     fetchData();
-    // setData(result.data);
   }, [callActive]);
 
   return (
@@ -184,12 +168,10 @@ function ActiveTicket() {
               variant="body1"
               size="large"
               type="submit"
-              variant="contained"
             >
               Extend Ticket
             </Button>
             </Box>
-          {/* </Box> */}
         </Container> : null}
         {showExtensionOption ? <Box mb={3}>
           <Container maxWidth="lg">
@@ -203,7 +185,6 @@ function ActiveTicket() {
               onSubmit={values => {
                 axios(
                   'http://localhost:5000/extendTicket', {
-                    // ' https://95d67cb9b11f.ngrok.io/extendTicket', {
                   method: 'POST',
                   data: { "email": localData.email, "parkingEmail":activeTicketData[index].parkingEmail, "parkedCarRegNo":activeTicketData[index].parkedCarRegNo,"timeToExtend": values.timeToExtend },
                   headers: {
@@ -213,40 +194,27 @@ function ActiveTicket() {
                 ).then(response => {
                   console.log(response.data);
                   if (response.data.statusCode == 200) {
-                    // navigate("/app/parkingTicket");
                     setCallActive(true);
                     setShowExtensionSuccess(true);
                     setShowExtensionError(false);
-                    // setParkedCarRegNo(response.data.data.ParkedCarRegNo);
-                    // setActiveTicketData(response.data.data);
-                    // setShowActiveWindow(true);
-                    // setShowNoActiveWindow(false);
-                    // setShowExtensionOption(false);
                   }
                   else {
                     setShowExtensionSuccess(false);
                     setShowExtensionError(true);
-                    // this.loginError.display = "block"
                   }
                 })
                   .catch(error => {
                     setShowExtensionSuccess(false);
                     setShowExtensionError(true);
-                    // this({ errorMessage: error.message });
                     console.error('There was an error!', error);
                   });
-              }
-                // extendParkTime();
-                // setActiveTicketData({ParkedCarRegNo: 'DE 1235'});
-              }
+              }}
             >
               {({
-                errors,
                 handleBlur,
                 handleChange,
                 handleSubmit,
                 isSubmitting,
-                touched,
                 dirty,
                 isValid,
                 values
@@ -279,8 +247,6 @@ function ActiveTicket() {
                     <Box mb={3}>
                     <Button
                       color="primary"
-                      // disabled = {!Formik.isValid}
-                      // disabled={isSubmitting || !dirty}
                       disabled={!(isValid && dirty) ||isSubmitting}
                       // fullWidth
                       size="large"

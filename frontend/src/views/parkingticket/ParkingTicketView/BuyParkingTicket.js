@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
   Button,
   Checkbox,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  FormControlLabel,
-  NativeSelect,
-  Typography,
-  makeStyles,
-  Modal
+  Container, FormControl,
+  FormControlLabel, InputLabel, Link, makeStyles,
+  Modal, Select, TextField, Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
-import Page from 'src/components/Page';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2)
   },
   formControl: {
-    // margin: theme.spacing(3),
     paddingBottom: theme.spacing(2),
     paddingTop: theme.spacing(2),
     height: '100%',
@@ -64,15 +51,9 @@ const buildOptions = () => {
 
 const BuyParkingTicket = () => {
   const classes = useStyles();
-  const navigate = useNavigate();
 
   localData = getLocalData("loginData");
   const [state, setState] = useState({
-    // showTicket: false,
-    // showInfoMessage: false,
-    // showTicketError: false,
-    // ticketInfo: '',
-    // showTempText: false,
     vehicles: [],
   });
 
@@ -80,7 +61,6 @@ const BuyParkingTicket = () => {
   const [showTicketInfo, setShowTicketInfo] = useState(false);
   const [showTicketError, setShowTicketError] = useState(false);
   const [ticketInfoMessage, setTicketInfoMessage] = useState('');
-  const [showTempText, setShowTempText] = useState(false);
 
   const handleEmailCBChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
@@ -90,10 +70,8 @@ const BuyParkingTicket = () => {
     async function fetchVehicles() {
       const result = await axios(
         'http://localhost/showVehicleData', {
-        // 'https://95d67cb9b11f.ngrok.io/showVehicleData', {
         method: 'POST',
         data: { "email": localData.email },
-        // data: { "email": "thirumal1206@gmail.com"},
         headers: {
           'Content-Type': 'application/json'
         }
@@ -101,7 +79,6 @@ const BuyParkingTicket = () => {
       ).then(response => {
         console.log(response.data);
         if (response.data.statusCode == 200) {
-          // setState({vehicles: []});
           setState({ vehicles: response.data.data });
         }
         else {
@@ -143,7 +120,6 @@ const BuyParkingTicket = () => {
         display="flex"
         flexDirection="column"
         height="100%"
-      // justifyContent="top"
       >
         <Container maxWidth="lg">
           <Formik
@@ -168,7 +144,6 @@ const BuyParkingTicket = () => {
                 values.parkingEmail = localData.email;
               }
               axios('http://localhost/buyParkingTicket', {
-              // axios(' https://95d67cb9b11f.ngrok.io/buyticket', {
                 method: 'POST',
                 data: values,
                 headers: {
@@ -184,8 +159,6 @@ const BuyParkingTicket = () => {
                   
                 }
                 else if (response.data.statusCode == 243) {
-                  // state.showInfoMessage = true;
-                  // state.ticketInfo = response.data.statusDesc;
                   setShowTicket(false);
                   setShowTicketInfo(true);
                   setTicketInfoMessage(response.data.statusDesc);
@@ -202,11 +175,9 @@ const BuyParkingTicket = () => {
                 setShowTicketError(true);
                 console.error('There was an error!', error);
               });
-              // navigate("/app/parkingTicket/viewTicket", { replace: false })
             }
             }
             onChange={values => {
-              // setState({ ...state, [event.target.name]: event.target.checked });
               values.emailCheckBox = false
             }}
           >
@@ -215,7 +186,6 @@ const BuyParkingTicket = () => {
               handleBlur,
               handleChange,
               handleSubmit,
-              isSubmitting,
               touched,
               dirty,
               isValid,
@@ -286,19 +256,6 @@ const BuyParkingTicket = () => {
                     </Typography>
                   </FormControl>
                 </Box>
-                {/* {state.showTempText ? <TextField
-                  error={Boolean(touched.parkedCarRegNo && errors.parkedCarRegNo)}
-                  fullWidth
-                  required
-                  helperText={touched.parkedCarRegNo && errors.parkedCarRegNo}
-                  label="Parking Car Registration Number"
-                  margin="normal"
-                  name="parkedCarRegNo"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.parkedCarRegNo}
-                  variant="outlined"
-                /> :null} */}
                 <Box mb={3}>
                   <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel htmlFor="outlined-age-native-simple">Parking Duration</InputLabel>
@@ -355,10 +312,7 @@ const BuyParkingTicket = () => {
                 <Box my={2}>
                   <Button
                     color="primary"
-                    // disabled = {!Formik.isValid}
-                    // disabled={isSubmitting || !dirty}
                     disabled={!(isValid && dirty)}
-                    // fullWidth
                     size="large"
                     type="submit"
                     variant="contained"
@@ -381,7 +335,6 @@ const BuyParkingTicket = () => {
                     onClick={() => {window.location.reload()}}
                     color="primary"
                     size="large"
-                    // type="submit"
                     variant="contained"
                     name="refreshBtn"
                     >Refresh

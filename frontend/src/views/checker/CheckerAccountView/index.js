@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import {
   Container,
   Grid,
@@ -18,8 +16,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// const CheckerAccountView = () => {
-  function CheckerAccountView() {
+function CheckerAccountView() {
   const classes = useStyles();
 
   return (

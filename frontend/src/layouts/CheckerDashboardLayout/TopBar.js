@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import {
   AppBar,
   Badge,
   Box,
   Hidden,
-  IconButton,
-  Toolbar,
-  makeStyles
+  IconButton, makeStyles, Toolbar
 } from '@material-ui/core';
+import InputIcon from '@material-ui/icons/Input';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import InputIcon from '@material-ui/icons/Input';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import Logo from 'src/components/Logo';
 
 const useStyles = makeStyles(() => ({

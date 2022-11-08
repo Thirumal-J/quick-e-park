@@ -1,28 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  NativeSelect,
-  Typography,
-  makeStyles
+  Box, Container, makeStyles
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
+import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
-import welcomesidebarimage from 'src/images/parkschein.jpg'
-import { Alert, AlertTitle } from '@material-ui/lab';
+import welcomesidebarimage from 'src/images/parkschein.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,15 +43,12 @@ const ActiveTicket = () => {
         display="flex"
         flexDirection="column"
         height="100%"
-      // justifyContent="right"
       >
         <Container maxWidth="sm">
           <div className="sidebar">
-            {/* <div className={classes.highlight}> */}
               <h2>No need for any app download !!</h2><br></br>
               <h2>Login from anywhere using any device!</h2>
               <br></br>
-            {/* </div> */}
             <img src={welcomesidebarimage}></img>
           </div>
         </Container>

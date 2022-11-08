@@ -1,21 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import moment from 'moment';
-import Applogo from "src/images/quick-e-park-logo.jpg"
 import {
   Avatar,
   Box,
-  Button,
-  IconButton,
-  Card,
+  Button, Card,
   CardActions,
   CardContent,
-  Divider,
-  Typography,
-  makeStyles
+  Divider, makeStyles, Typography
 } from '@material-ui/core';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import Applogo from "src/images/quick-e-park-logo.jpg";
 
 const user = {
   avatar: {Applogo},
@@ -75,30 +68,10 @@ const Profile = ({ className, ...rest }) => {
           >
             {user.firstName}
           </Typography>
-          {/* <Typography
-            color="textSecondary"
-            variant="body1"
-          >
-            {`${user.city} ${user.country}`}
-          </Typography>
-          <Typography
-            className={classes.dateText}
-            color="textSecondary"
-            variant="body1"
-          >
-            {`${moment().format('hh:mm A')} ${user.timezone}`}
-          </Typography> */}
         </Box>
       </CardContent>
       <Divider />
       <CardActions>
-        {/* <Button
-          color="primary"
-          fullWidth
-          variant="text"
-        >
-          Upload picture
-        </Button> */}
         <div className={classes.root}>
       <input
         accept="image/*"
@@ -113,11 +86,6 @@ const Profile = ({ className, ...rest }) => {
         </Button>
       </label>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-      {/* <label htmlFor="icon-button-file">
-        <IconButton color="primary" aria-label="upload picture" component="span">
-          <PhotoCamera />
-        </IconButton>
-      </label> */}
     </div>
       </CardActions>
     </Card>

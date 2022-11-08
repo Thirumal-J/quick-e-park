@@ -1,21 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import moment from 'moment';
-import Applogo from "src/images/quick-e-park-logo.jpg"
 import {
   Avatar,
   Box,
-  Button,
-  IconButton,
-  Card,
+  Button, Card,
   CardActions,
   CardContent,
-  Divider,
-  Typography,
-  makeStyles
+  Divider, makeStyles, Typography
 } from '@material-ui/core';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import Applogo from "src/images/quick-e-park-logo.jpg";
 
 const user = {
   avatar: {Applogo},

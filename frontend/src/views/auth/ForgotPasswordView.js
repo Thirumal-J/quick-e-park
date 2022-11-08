@@ -1,20 +1,13 @@
-import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Container, Link, makeStyles, TextField,
+  Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
+import { Formik } from 'formik';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,11 +37,9 @@ const ForgotPasswordView = () => {
           <Formik
             initialValues={{
               email: '',
-              // password: ''
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-              // password: Yup.string().max(255).required('Password is required')
             })}
             onSubmit={() => {
               navigate('/resetPassword', { replace: true });

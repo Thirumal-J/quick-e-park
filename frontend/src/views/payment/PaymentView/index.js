@@ -1,11 +1,9 @@
-import React from 'react';
 import {
     Container,
     Grid,
     makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import PaymentTypes from './PaymentTypes';
 import AmountToPay from './AmountToPay';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,17 +47,7 @@ const PaymentView = (state, props) => {
                         xs={12}
                     >
                     <AmountToPay/>
-                    </Grid>
-                    {/* <Grid
-                        item
-                        lg={5}
-                        sm={10}
-                        xl={5}
-                        xs={12}
-                    >
-                    <PaymentTypes/>
-                    </Grid> */}
-                    
+                    </Grid>                    
                 </Grid>
             </Container>
         </Page>

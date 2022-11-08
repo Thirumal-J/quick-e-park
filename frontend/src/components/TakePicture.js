@@ -1,18 +1,12 @@
-import React from 'react';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
-import axios from 'axios';
 
 function TakePicture (props) {
   function handleTakePhoto (dataUri) {
-    // Do stuff with the photo...
-
-    console.log('takePhoto',dataUri);
-    
+    console.log('takePhoto',dataUri);    
   }
  
   function handleTakePhotoAnimationDone (dataUri) {
-    // Do stuff with the photo...
     console.log('takePhoto');
   }
  

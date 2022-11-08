@@ -1,6 +1,3 @@
-
-
-
 const buildOptions = () => {
     var arr = [];
   

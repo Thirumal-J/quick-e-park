@@ -1,9 +1,6 @@
-import React from 'react';
 import {
   Box,
-  Container,
-  Typography,
-  makeStyles
+  Container, makeStyles, Typography
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 

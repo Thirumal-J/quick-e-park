@@ -1,31 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  NativeSelect,
-  Typography,
-  makeStyles, Table,
+  Box, Container, makeStyles, Paper, Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  Paper
+  TableRow, Typography
 } from '@material-ui/core';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Page from 'src/components/Page';
-import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,16 +46,14 @@ const buildOptions = () => {
 
 function TicketHistory() {
   const classes = useStyles();
-  const navigate = useNavigate();
+  
   localData = getLocalData("loginData");
-  // const [state, setState] = React.useState({
-  //   activeTicketCount:1
-  // });
+  
   const [state, setState] = React.useState({
     oldTicketCount: 0,
     rows: []
   });
-  // const [ParkedCarRegNo, setParkedCarRegNo] = useState('');
+  
   const [oldTicketData, setOldTicketData] = useState({
     parkedCarRegNo: '',
     parkingEndDate: '',
@@ -82,15 +63,15 @@ function TicketHistory() {
     remainingParkingDuration: '',
     notificationEmail: ''
   });
+
   const [showActiveWindow, setShowActiveWindow] = useState(false);
   const [showNoActiveWindow, setShowNoActiveWindow] = useState(true);
   const [showExtensionOption, setShowExtensionOption] = useState(false);
-  // const [extendParkingTime, setExtendParkingTime] = useState('');
+  
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
         'http://localhost/getTicketHistory', {
-        // ' https://95d67cb9b11f.ngrok.io/getTicketHistory', {
         method: 'POST',
         data: { "email": localData.email },
         headers: {
@@ -100,23 +81,17 @@ function TicketHistory() {
       ).then(response => {
         console.log(response.data);
         if (response.data.statusCode == 200) {
-          // setParkedCarRegNo(response.data.data.ParkedCarRegNo);
           setState({ activeTicketCount: response.data.data.length });
           setOldTicketData(response.data.data);
           setShowActiveWindow(true);
           setShowNoActiveWindow(false);
         }
-        else {
-          // this.loginError.display = "block"
-        }
       })
         .catch(error => {
-          // this({ errorMessage: error.message });
           console.error('There was an error!', error);
         });
     }
     fetchData();
-    // setData(result.data);
   }, []);
 
   return (
@@ -128,7 +103,6 @@ function TicketHistory() {
         display="flex"
         flexDirection="column"
         height="100%"
-        // justifyContent="center"
       >
         <Container maxWidth="lg">
           <Box mb={3}>
@@ -159,7 +133,6 @@ function TicketHistory() {
                     <TableCell align="right">Notification Email</TableCell>
                     <TableCell align="right">Parking Fare</TableCell>
                     <TableCell align="right">Payment Status</TableCell>
-                    {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -172,7 +145,6 @@ function TicketHistory() {
                       <TableCell align="right">{row.parkingEmail}</TableCell>
                       <TableCell align="right">{row.parkingFare}</TableCell>
                       <TableCell align="right">{row.paymentStatus}</TableCell>
-                      {/* <TableCell align="right">{row.protein}</TableCell> */}
                     </TableRow>
                   ))}
                 </TableBody>

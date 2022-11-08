@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Container, makeStyles, Typography
 } from '@material-ui/core';
-import Page from 'src/components/Page';
-import { Alert, AlertTitle } from '@material-ui/lab';
-// import TakePicture from 'src/components/TakePicture';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import ScannerIcon from '@material-ui/icons/Scanner';
+import axios from 'axios';
+import { useState } from 'react';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
-import ScannerIcon from '@material-ui/icons/Scanner';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { useNavigate } from 'react-router-dom';
+import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,12 +24,6 @@ const useStyles = makeStyles((theme) => ({
     display:"block",
     margin: "auto"
   },
-  // upload: {
-  //   '& > *': {
-  //     margin: theme.spacing(1),
-  //     justifyContent: "center"
-  //   }
-  // },
   input: {
     display: 'none',
   },
@@ -50,8 +36,6 @@ const useStyles = makeStyles((theme) => ({
     height: '200px',
     width: '500px',
     img: {
-      // width: '25%',
-      // height: '25%'
       width: '100px',
       height: '300px'
     }
@@ -71,7 +55,6 @@ const setLocalData = (localDataKey, localDataValue) => {
   localData = JSON.parse(localStorage.getItem(localDataKey));
 };
 
-// function TakePicture (props) {
 const ScanAndCheck = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -138,40 +121,6 @@ const ScanAndCheck = (props) => {
     console.log('handleCameraStop');
   }
 
-  // const fileSelectedHandler = event => {
-  //   setSelectedImage(event.target.files[0]);
-  // };
-  // const uploadHandler = () => {
-  //   const fd = new FormData();
-  //   fd.append('image', selectedImage);
-  //   console.log(fd);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // TODO: do something with -> this.state.file
-  //   setImagePreviewUrl('');
-  //   console.log('handle uploading-', file);
-  //   getLicenseNumber(base64Img);
-  // }
-
-  // const handleImageChange = (e) => {
-  //   e.preventDefault();
-
-  //   let reader = new FileReader();
-  //   let file = e.target.files[0];
-
-  //   reader.onloadend = () => {
-  //     setFile(file);
-  //     setImagePreviewUrl(reader.result);
-  //     setBase64Img(reader.readAsDataURL(file));
-  //     // console.log("test image--->",base64Img);
-  //   }
-
-  //   reader.readAsDataURL(file);
-  //   setShowUploadButton(true);
-  // }
-
   return (
     <Page
       className={classes.root}
@@ -181,7 +130,6 @@ const ScanAndCheck = (props) => {
         display="flex"
         flexDirection="column"
         height="100%"
-      // justifyContent="center"
       >
         <Container maxWidth="md">
           <Box mb={3}>
@@ -190,7 +138,6 @@ const ScanAndCheck = (props) => {
               variant="body1"
               size="large"
               type="submit"
-              variant="contained"
               startIcon={<ScannerIcon />}
               style={{display:"flex",margin:"auto"}}
             >
@@ -201,7 +148,6 @@ const ScanAndCheck = (props) => {
             <Box md={3}>
               <Camera className={classes.cameraStyle}
                 onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
-                // onTakePhotoAnimationDone={(dataUri) => { handleTakePhotoAnimationDone(dataUri); }}
                 onCameraError={(error) => { handleCameraError(error); }}
                 idealFacingMode={FACING_MODES.ENVIRONMENT}
                 idealResolution={{ width: 640, height: 480 }}
@@ -219,7 +165,6 @@ const ScanAndCheck = (props) => {
               {showPreview ?<div className={classes.imgPreview}>
                 <Typography
                   color="textSecondary"
-                  // gutterBottom
                   variant="body2"
                 >
                   Preview of the Image
@@ -235,7 +180,6 @@ const ScanAndCheck = (props) => {
               variant="body1"
               size="large"
               type="submit"
-              variant="contained"
               startIcon={<CloudUploadIcon />}
             >
               Confirm 

@@ -1,30 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  NativeSelect,
-  Typography,
-  makeStyles,
-  Table,
+  Box, Container, makeStyles, Paper, Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  Paper
+  TableRow, Typography
 } from '@material-ui/core';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +47,6 @@ const CheckerFines = () => {
     async function fetchData() {
       const result = await axios(
         'http://localhost/viewIssuedFine', {
-        // 'https://95d67cb9b11f.ngrok.io/viewIssuedFine', {
         method: 'POST',
         data: { "empId": localData.empId },
         headers: {
@@ -96,7 +79,6 @@ const CheckerFines = () => {
         display="flex"
         flexDirection="column"
         height="100%"
-        // justifyContent="center"
       >
          <Container maxWidth="md">
           <Box mb={3}>
@@ -117,7 +99,6 @@ const CheckerFines = () => {
                   <TableCell >Parked Car No</TableCell>
                   <TableCell >Parking Fine</TableCell>
                   <TableCell >Payment Status</TableCell>
-                  {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -128,7 +109,6 @@ const CheckerFines = () => {
                     <TableCell >{row.carRegistrationNo}</TableCell>
                     <TableCell >{row.parkingFine}</TableCell>
                     <TableCell >{row.paidStatus}</TableCell>
-                    {/* <TableCell align="right">{row.protein}</TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>

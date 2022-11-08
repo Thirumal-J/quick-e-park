@@ -1,36 +1,23 @@
-import React, { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {
   Avatar,
-  Box,
-  Button,
-  Divider,
+  Box, Divider,
   Drawer,
   Hidden,
-  List,
-  Typography,
-  makeStyles
+  List, makeStyles, Typography
 } from '@material-ui/core';
-import {
-  AlertCircle as AlertCircleIcon,
-  BarChart as BarChartIcon,
-  Lock as LockIcon,
-  Settings as SettingsIcon,
-  ShoppingBag as ShoppingBagIcon,
-  User as UserIcon,
-  UserPlus as UserPlusIcon,
-  Users as UsersIcon,
-  // ExitToAppIcon as ExitToAppIcon
-} from 'react-feather';
-import NavItem from './NavItem';
-import HomeIcon from '@material-ui/icons/Home';
-import ExitToAppIcon  from '@material-ui/icons/ExitToApp';
-import EuroSharpIcon from '@material-ui/icons/EuroSharp';
-import ScannerIcon from '@material-ui/icons/Scanner';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-import LocalParkingOutlinedIcon from '@material-ui/icons/LocalParkingOutlined';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import EuroSharpIcon from '@material-ui/icons/EuroSharp';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
+import ScannerIcon from '@material-ui/icons/Scanner';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import {
+  Settings as SettingsIcon, User as UserIcon
+} from 'react-feather';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import NavItem from './NavItem';
 
 let localData= {};
 const getLocalData = (localDataKey) => {
@@ -109,14 +96,11 @@ const NavBar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
   localData = getLocalData("loginData");
   user.name = localData.firstName;
-  // user.name = "Rahane";
-  // user.empId = localData.empId;
   user.empId = 123456;
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const content = (
@@ -170,33 +154,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         m={2}
         bgcolor="background.dark"
       >
-        {/* <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
-          Need more?
-        </Typography>
-        <Typography
-          align="center"
-          variant="body2"
-        >
-          Upgrade to PRO version and access 20 more screens
-        </Typography>
-        <Box
-          display="flex"
-          justifyContent="center"
-          mt={2}
-        >
-          <Button
-            color="primary"
-            component="a"
-            href="https://react-material-kit.devias.io"
-            variant="contained"
-          >
-            See PRO version
-          </Button>
-        </Box> */}
       </Box>
     </Box>
   );

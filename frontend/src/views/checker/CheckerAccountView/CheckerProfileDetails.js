@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import Page from 'src/components/Page';
 import {
   Box,
   Button,
   Card,
   CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  TextField,
-  makeStyles,
-  Container,
-  Link,
-  Typography
+  CardHeader, Container, Divider,
+  Grid, makeStyles, TextField
 } from '@material-ui/core';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -61,17 +54,15 @@ const ProfileDetails = ({ className, ...rest }) => {
               firstName: localData.firstName,
               lastName: localData.lastName,
               licenseNumber: localData.licenseNumber,
-              // email: localData.email,
               email:localData.email,
               mobileNumber: localData.mobileNumber
             }}
             validationSchema={Yup.object().shape({
-              // email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+              email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
             })}
             onSubmit={values => {
               console.log(values);
               axios('http://localhost/updateProfileData', {
-                // axios('http://da0a261c367d.ngrok.io/updateProfileData',{
                 method: 'POST',
                 data: values,
                 headers: {
@@ -85,25 +76,16 @@ const ProfileDetails = ({ className, ...rest }) => {
                     setShowUpdateError(false);
                     setShowUpdateMessage(true);
                     setMessage(response.data.statusDesc);
-                    // setLocalData("loginData", response.data.data);
-                    // console.log("Login Page after api call--->", localData);
-                    // navigate('/app/home');
-
                   }
                   else {
-                    // setShowLoginError(true);
                     setShowUpdateError(true);
                     setShowUpdateMessage(false);
                     setMessage(response.data.statusDesc);
-                    // console.log(values)
                   }
                 })
                 .catch(error => {
-                  // this({ errorMessage: error.message });
                   console.error('There was an error!', error);
                 });
-              // }
-
             }
             }
           >
@@ -159,22 +141,6 @@ const ProfileDetails = ({ className, ...rest }) => {
                           variant="outlined"
                         />
                       </Grid>
-                      {/* <Grid
-                        item
-                        md={6}
-                        xs={12}
-                      >
-                        <TextField
-                          fullWidth
-                          disabled
-                          label="License number"
-                          name="licenseNumber"
-                          onChange={handleChange}
-                          required
-                          value={values.licenseNumber}
-                          variant="outlined"
-                        />
-                      </Grid> */}
                       <Grid
                         item
                         md={6}
@@ -207,7 +173,6 @@ const ProfileDetails = ({ className, ...rest }) => {
                           label="Mobile Number"
                           name="mobileNumber"
                           onChange={handleChange}
-                          // type="number"
                           value={values.mobileNumber}
                           variant="outlined"
                         />
@@ -220,8 +185,6 @@ const ProfileDetails = ({ className, ...rest }) => {
                         <Box my={2}>
                           <Button
                             color="primary"
-                            // disabled={isSubmitting}
-                            // fullWidth
                             size="large"
                             type="submit"
                             variant="contained"

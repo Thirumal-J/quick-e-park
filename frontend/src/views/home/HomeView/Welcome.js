@@ -1,29 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Select,
-  InputLabel,
-  FormControl,
-  NativeSelect,
-  Typography,
-  makeStyles
+  Box, Container, makeStyles
 } from '@material-ui/core';
-import EmojiEmotionsSharpIcon from '@material-ui/icons/EmojiEmotionsSharp';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
+import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
 import phoneimage from 'src/images/phone-map.jpg';
-import { Alert, AlertTitle } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'top',
   },
   welcometext: {
-    // height: '100%',
     backgroundColor: theme.palette.background.dark,
     verticalAlign: 'top',
     textAlign: 'justify',
@@ -46,18 +25,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'top'
   }
 }));
-
-let localData = {};
-const getLocalData = (localDataKey) => {
-  if (localStorage.getItem(localDataKey) != null) {
-    return JSON.parse(localStorage.getItem(localDataKey));
-  }
-};
-
-const setLocalData = (localDataKey, localDataValue) => {
-  localStorage.setItem(localDataKey, JSON.stringify(localDataValue));
-  localData = JSON.parse(localStorage.getItem(localDataKey));
-};
 
 const Welcome = () => {
   const classes = useStyles();

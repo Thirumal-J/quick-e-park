@@ -1,28 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
     Box,
-    Button,
-    Radio,
-    RadioGroup,
-    Container,
-    Grid,
-    Link,
-    TextField,
-    Select,
-    InputLabel,
-    FormControl,
+    Button, Container, FormControl,
     FormControlLabel,
-    FormLabel,
-    NativeSelect,
-    Typography,
-    makeStyles
+    FormLabel, makeStyles, Radio,
+    RadioGroup, TextField, Typography
 } from '@material-ui/core';
+import { Formik } from 'formik';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,7 +50,6 @@ const PaymentTypes = () => {
                 display="flex"
                 flexDirection="column"
                 height="100%"
-                // justifyContent="center"
             >
                 <Container maxWidth="md">
                     <Box mb={3}>
@@ -105,8 +91,6 @@ const PaymentTypes = () => {
                             errors,
                             handleBlur,
                             handleChange,
-                            handleSubmit,
-                            isSubmitting,
                             touched,
                             dirty,
                             isValid,
@@ -146,7 +130,6 @@ const PaymentTypes = () => {
                                 <Button
                                     color="primary"
                                     disabled={!(isValid && dirty)}
-                                    // fullWidth
                                     size="large"
                                     type="submit"
                                     variant="contained"

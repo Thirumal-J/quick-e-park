@@ -1,7 +1,5 @@
 {
-  "name": "react-material-dashboard",
-  "author": "DeviasIO",
-  "licence": "MIT",
+  "name": "quick-e-park",
   "version": "1.0.0",
   "private": false,
   "scripts": {

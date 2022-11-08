@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   Box,
   Button,
@@ -10,10 +7,10 @@ import {
   Checkbox,
   Divider,
   FormControlLabel,
-  Grid,
-  Typography,
-  makeStyles
+  Grid, makeStyles, Typography
 } from '@material-ui/core';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(({
   root: {},

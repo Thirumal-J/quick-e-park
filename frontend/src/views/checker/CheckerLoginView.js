@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import axios from 'axios';
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Container, makeStyles, TextField,
+  Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
-import Page from 'src/components/Page';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Page from 'src/components/Page';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,27 +20,33 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(3)
   }
 }));
+
 const loginErrorText = ({
   loginError:{
     display:'none'
   }
 });
+
 let localData= {};
+
 const getLocalData = (localDataKey) => {
   if (localStorage.getItem(localDataKey) != null){
     localData = JSON.parse(localStorage.getItem(localDataKey));
     return localData;
   }
 };
+
 const setLocalData = (localDataKey,localDataValue) => {
     localStorage.setItem(localDataKey, JSON.stringify(localDataValue));
     localData = JSON.parse(localStorage.getItem(localDataKey));
 };
+
 const CheckerLoginView = () => {
+
   const classes = useStyles();
   const navigate = useNavigate();
   const [showLoginError, setShowLoginError] = useState(false);
-  // const verfiyLogin = verifyLogin();
+
   return (
     <Page
       className={classes.root}
@@ -66,19 +65,13 @@ const CheckerLoginView = () => {
               password: ''
             }}
             validationSchema={Yup.object().shape({
-              // empId: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               empId: Yup.number().required('Employee Id is required'),
               password: Yup.string().required("Please enter your password")
-              // .matches(
-              //   /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-              //   "Password must contain at least 8 characters, one uppercase, one number and one special case character"
-              // )
             })}
             onSubmit={values => 
               {
                 console.log(values);
                 axios('http://localhost/loginValidChecker', {
-                  // axios('https://95d67cb9b11f.ngrok.io/loginValidChecker',{
                   method: 'POST',
                   data : values,
                   headers: {
@@ -97,7 +90,6 @@ const CheckerLoginView = () => {
                   }
                 })
                       .catch(error => {
-                          // this({ errorMessage: error.message });
                        console.error('There was an error!', error);
                   });
               // }
@@ -139,8 +131,6 @@ const CheckerLoginView = () => {
                   name="empId"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  // type="email"
-                  // type="number"
                   value={values.empId}
                   variant="outlined"
                 />
@@ -160,8 +150,6 @@ const CheckerLoginView = () => {
                 <Box my={2}>
                   <Button
                     color="primary"
-                    // disabled={isSubmitting}
-                    // fullWidth
                     size="large"
                     type="submit"
                     variant="contained"
